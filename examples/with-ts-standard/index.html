@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Deep work</title>
+</head>
+<body style="margin: 0; display: absolute; height: 100%; width: 100%;">
+  <div id="sign" style="height: 100vh; font-size: 46px; text-align: center">UNKNOWN</div>
+  <script>
+    var gmt = -3
+    var schedules = [
+      {from: 10.3, to: 12.3},
+      {from: 15, to: 17}
+    ]
+    
+    function load() {
+      var current = new Date()
+      var hours = current.getUTCHours() + gmt
+      var deepWork = schedules.find(
+        function hour(schedule) {
+          return (
+            hours >= schedule.from
+            && hours < schedule.to
+          )
+        }
+      )
+      var el = document.getElementById('sign')
+      el.innerText = deepWork ? 'DEEP' : 'SHALLOW'
+      el.style.backgroundColor = 'black'
+      el.style.color = deepWork ? 'green' : 'red'
+
+      setTimeout(load, 100)
+    }
+
+    load()
+  </script>
+</body>
+</html>

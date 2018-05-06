@@ -1,0 +1,14 @@
+@font-face{
+  font-family: 'Roboto Slab';
+  src: url('./fonts/Roboto_Slab/RobotoSlab-Regular.ttf');
+}
+
+html { font-size: calc(1em + 3vw) }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto Slab;
+}
