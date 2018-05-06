@@ -9,7 +9,7 @@ module.exports = function loadExample(opts) {
   const example = opts.example;
   const cmds = [
     `mkdir -p ${projectName}`,
-    `curl https://codeload.github.com/jaredpalmer/razzle/tar.gz/master | tar -xz -C ${projectName} --strip=3 razzle-master/examples/${example}`,
+    `curl https://codeload.github.com/nicosommi/razzle/tar.gz/master | tar -xz -C ${projectName} --strip=3 razzle-master/examples/${example}`,
   ];
 
   const stopExampleSpinner = output.wait(
