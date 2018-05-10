@@ -1,10 +1,9 @@
-# Typescript Example for Razzle
+# Example for Razzle
 
 ## Plus:
 - Custom linting rules
 - One font included
 - Svg ready
-- Glamor + glamorous
 
 ## Todo
 - Support Styleguidist
@@ -20,4 +19,3 @@
 - Gitlab CI configuration
 - More batteries for the server
 - Auth
-

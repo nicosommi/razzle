@@ -1,13 +1,15 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
+const razzleConfigEnv = require('razzle/config/env')
+
 module.exports = {
   modify(baseConfig, { target, dev }, webpack) {
-    const config = Object.assign({}, baseConfig);
+    const config = Object.assign({}, baseConfig)
 
     config.resolve.extensions = config.resolve.extensions.concat([
       '.ts',
       '.tsx',
-    ]);
- 
-
+    ])
 
     // Locate eslint-loader and remove it (we're using tslint instead)
     config.module.rules = config.module.rules.filter(
@@ -18,16 +20,16 @@ module.exports = {
           rule.use[0].options &&
           'useEslintrc' in rule.use[0].options
         )
-    );
+    )
     
     // Safely locate Babel-Loader in Razzle's webpack internals
     const babelLoader = config.module.rules.findIndex(
       rule => rule.use[1].options && rule.use[1].options.babelrc
-    );
+    )
     
     // Get the correct `include` option, since that hasn't changed.
     // This tells Razzle which directories to transform.
-    const { include } = config.module.rules[babelLoader];
+    const { include } = config.module.rules[babelLoader]
     
     // Add tslint-loader
     config.module.rules.push({
@@ -39,7 +41,7 @@ module.exports = {
         emitErrors: true,
         configFile: './tslint.json',
       },
-    });
+    })
 
     // Declare our TypeScript loader configuration
     const tsLoader = {
@@ -49,7 +51,7 @@ module.exports = {
       options: {
         transpileOnly: true,
       },
-    };
+    }
     // Add loader
     // config.module.rules.push(tsLoader)
     
@@ -63,8 +65,18 @@ module.exports = {
     // - COMMENT out line 55
     // - UNCOMMENT line 67
     //
-    config.module.rules[babelLoader] = tsLoader;
+    config.module.rules[babelLoader] = tsLoader
 
-    return config;
+    // config.plugins.concat([
+    //   // make proper client env
+    //   new InterpolateHtmlPlugin({}),
+    //   new HtmlWebpackPlugin({
+    //     filename: `${__dirname}/build/index.2.html`,
+    //     inject: true,
+    //     template: `${__dirname}/public/index.html`,
+    //   })
+    // ])
+
+    return config
   },
-};
+}
